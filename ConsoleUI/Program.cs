@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -32,22 +33,49 @@ namespace ConsoleUI
             */
 
             // Create a list of Vehicle called vehicles
+            var vehicles = new List<Vehicle>();
 
             /*
              * Create 4 instances: 1 Car, 1 Motorcycle, and then 2 instances of type Vehicle (use explicit typing) but use constuctors from derived classes
              * - set them up as one of each derived class
              * Set the properties with object initializer syntax
              */
+            Car rav4 = new Car() { HasTrunk = true, Make = "Toyota", Model = "Rav4", Year = "2017" };
+            Motorcycle ducati = new Motorcycle() { HasSideCart = false, Make = "Ducati", Model = "Panigale V4", Year = "2023" };
 
+            Vehicle momCar = new Car() { HasTrunk = false, Make = "Honda", Model = "Family Van Sport", Year = "1984" };
+            Vehicle stationWagon = new Car() { HasTrunk = true, Make = "Dodge", Model = "Aspen", Year = "1987" };
             /*
              * Add the 4 vehicles to the list
              * Using a foreach loop iterate over each of the properties
              */
+            vehicles.Add(rav4);
+            vehicles.Add(ducati);
+            vehicles.Add(stationWagon);
+            vehicles.Add(momCar);
 
+            foreach (var vehicle in vehicles)
+            {
+                Console.WriteLine($" Make: {vehicle.Make} \nModel: {vehicle.Model} \n Year: {vehicle.Year}");
+                vehicle.DriveAbstract();
+                vehicle.DriveVirtual();
+                Console.WriteLine("----------------------------------------------");
+                Console.WriteLine();
+
+            }
+
+            Console.WriteLine("******************************");
             // Call each of the drive methods for one car and one motorcycle
+            rav4.DriveAbstract();
+            rav4.DriveVirtual();
+            Console.WriteLine("\n");
 
-            #endregion            
-            Console.ReadLine();
+            ducati.DriveAbstract();
+            ducati.DriveVirtual();
+
+            #endregion
+
+
         }
     }
 }
